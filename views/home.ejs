@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            <%= title %>
+        </title>
+        
+        <link rel="stylesheet" href="/css/home.css">
+        
+    </head>
+    <body>
+        <div id="todo-app">
+            <h1 id="todo-heading">
+                <i class="fas fa-clipboard-list"></i>
+                TODO APP
+            </h1>
+
+            <form action="/create" method="POST" id="form-1">
+                <label for="description" id="todo-description" class="about">DESCRIPTION</label>
+                <input type="text" id="description" name="name" placeholder="Your TODO.." required>
+                
+
+                <div id="categ-date-div">
+
+                <div id ="category-div">
+                <label for="category" id="todo-category" class="about">CATEGORY</label>
+                <br>
+                <select id="category" name="card" required>
+                  <option value="1" selected disabled> Choose a Category </option>
+                  <option value="personal">Personal</option>
+                  <option value="school">School</option>
+                  <option value="work">Work</option>
+                  <option value="cleaning">Cleaning</option>
+                  <option value="others">Others</option>
+                </select>
+                </div>
+
+                <div id="date-div">
+                <label for="due-date" id="todo-date" class="about">DUE DATE</label>
+                <br>
+                <input type="date" id="due-date" name="date" required>
+                </div>
+
+                </div>
+            
+
+                <div id="add-button-div">
+                <button id="add-button"> <i class="fas fa-plus" id="plus"></i> ADD TASK </button>
+                </div>
+              </form>
+                
+              
+                <% for(let i of todo_list) {%>
+                       <div class="list-items-div">  
+                         <div class="list-checkbox">
+                           <input type="checkbox" id="<%= i._id %>" name="checkbox-name">
+                           <span class="list-description"><%= i.name %></span>
+                           <br>
+                           <i class="fas fa-calendar-alt" id="calendar"></i>
+                           <span class="list-date"> <%= i.date.toDateString()%></span>
+                         </div>
+                       
+                         <div class="list-category">
+                              <%= i.card %> 
+                         </div>
+  
+                       </div> 
+                <% } %>  
+               <div id="delete-button-div">
+                <button id="delete-button"><i class="fas fa-trash" id="trash"></i> DELETE TASKS</button>
+               </div>  
+            
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+        <script type="text/javascript" src="/js/home.js"></script>
+        <script src="https://kit.fontawesome.com/41c8fb69c7.js" crossorigin="anonymous"></script> 
+    </body>
+</html>
